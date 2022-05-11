@@ -23,7 +23,7 @@ services:
     # Nginx Service
     nginx:
         container_name: laravel-nginx
-        image: nginx:alpine
+        image: nginx:1.21.6-alpine
         restart: unless-stopped
         ports:
             - 8000:80
