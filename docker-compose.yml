@@ -57,7 +57,6 @@ services:
     npm:
         container_name: laravel-npm
         image: node:18-alpine
-        restart: unless-stopped
         working_dir: /var/www/
         entrypoint: ['npm']
         volumes:
