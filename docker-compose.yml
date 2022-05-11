@@ -30,6 +30,9 @@ services:
         volumes:
             - ./:/var/www
             - ./.docker/nginx/:/etc/nginx/conf.d/
+        depends_on:
+            - app
+            - mysql
         networks:
             - app_network
 
