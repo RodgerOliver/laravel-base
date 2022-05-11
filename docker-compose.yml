@@ -4,14 +4,14 @@ services:
 
     # Laravel App
     app:
-        container_name: laravel-app
+        container_name: ${PROJECT_NAME}-app
         build:
             args:
                 user: laravel
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
-        image: laravel-app:9
+        image: ${PROJECT_NAME}-app:9
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
@@ -22,7 +22,7 @@ services:
 
     # Nginx Service
     nginx:
-        container_name: laravel-nginx
+        container_name: ${PROJECT_NAME}-nginx
         image: nginx:1.21.6-alpine
         restart: unless-stopped
         ports:
@@ -38,7 +38,7 @@ services:
 
     # Mysl Service
     mysql:
-        container_name: laravel-mysql
+        container_name: ${PROJECT_NAME}-mysql
         image: mysql:8
         restart: unless-stopped
         environment:
@@ -55,7 +55,7 @@ services:
 
     # Node Service
     npm:
-        container_name: laravel-npm
+        container_name: ${PROJECT_NAME}-npm
         image: node:18-alpine
         working_dir: /var/www/
         entrypoint: ['npm']
