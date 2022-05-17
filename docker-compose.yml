@@ -11,7 +11,7 @@ services:
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
-        image: ${PROJECT_NAME}-app:9
+        image: ${PROJECT_NAME}-app
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
