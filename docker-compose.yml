@@ -67,6 +67,16 @@ services:
         networks:
             - app_network
 
+    # Composer Service
+    composer:
+        container_name: ${PROJECT_NAME}-composer
+        image: composer:2.3
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - app_network
+
 networks:
     app_network:
         driver: bridge
