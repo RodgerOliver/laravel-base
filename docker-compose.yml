@@ -77,6 +77,20 @@ services:
         networks:
             - app_network
 
+    # Artisan Service
+    artisan:
+        container_name: ${PROJECT_NAME}-artisan
+        image: ${PROJECT_NAME}-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        entrypoint: ['php', 'artisan']
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - mysql
+        networks:
+            - app_network
+
 networks:
     app_network:
         driver: bridge
