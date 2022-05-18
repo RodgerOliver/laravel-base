@@ -64,6 +64,7 @@ services:
             NPM_CONFIG_LOGLEVEL: warn
         volumes:
             - ./:/var/www
+            - ./.docker/npm/npmrc:/var/www/.npmrc
         networks:
             - app_network
 
