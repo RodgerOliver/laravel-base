@@ -82,7 +82,6 @@ services:
     artisan:
         container_name: ${PROJECT_NAME}_artisan
         image: ${PROJECT_NAME}-app
-        restart: unless-stopped
         working_dir: /var/www/
         entrypoint: ['php', 'artisan']
         volumes:
