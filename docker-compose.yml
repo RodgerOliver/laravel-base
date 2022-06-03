@@ -92,6 +92,22 @@ services:
         networks:
             - app_network
 
+    # Npm Watch Service
+    npm_watch:
+        container_name: ${PROJECT_NAME}_npm-watch
+        image: node:16-alpine
+        restart: always
+        working_dir: /var/www/
+        entrypoint: ['npm', 'run', 'watch']
+        user: node
+        environment:
+            NPM_CONFIG_LOGLEVEL: warn
+        volumes:
+            - ./:/var/www
+            - ./.npmrc:/var/www/.npmrc
+        networks:
+            - app_network
+
 networks:
     app_network:
         driver: bridge
