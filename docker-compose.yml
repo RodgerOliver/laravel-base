@@ -2,16 +2,16 @@ version: "3.7"
 
 services:
 
-    # Laravel App
-    app:
-        container_name: ${PROJECT_NAME}_app
+    # PHP Service
+    php:
+        container_name: ${PROJECT_NAME}_php
         build:
             args:
                 user: laravel
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
-        image: ${PROJECT_NAME}-app
+        image: ${PROJECT_NAME}-php
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
@@ -31,7 +31,7 @@ services:
             - ./:/var/www
             - ./.docker/nginx/:/etc/nginx/conf.d/
         depends_on:
-            - app
+            - php
             - mysql
         networks:
             - app_network
@@ -81,7 +81,7 @@ services:
     # Artisan Service
     artisan:
         container_name: ${PROJECT_NAME}_artisan
-        image: ${PROJECT_NAME}-app
+        image: ${PROJECT_NAME}-php
         working_dir: /var/www/
         entrypoint: ['php', 'artisan']
         volumes:
