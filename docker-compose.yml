@@ -4,7 +4,7 @@ services:
 
     # Laravel App
     app:
-        container_name: ${PROJECT_NAME}-app
+        container_name: ${PROJECT_NAME}_app
         build:
             args:
                 user: laravel
@@ -22,7 +22,7 @@ services:
 
     # Nginx Service
     nginx:
-        container_name: ${PROJECT_NAME}-nginx
+        container_name: ${PROJECT_NAME}_nginx
         image: nginx:1.21.6-alpine
         restart: unless-stopped
         ports:
@@ -38,7 +38,7 @@ services:
 
     # Mysl Service
     mysql:
-        container_name: ${PROJECT_NAME}-mysql
+        container_name: ${PROJECT_NAME}_mysql
         image: mysql:8
         restart: unless-stopped
         environment:
@@ -55,7 +55,7 @@ services:
 
     # Node Service
     npm:
-        container_name: ${PROJECT_NAME}-npm
+        container_name: ${PROJECT_NAME}_npm
         image: node:16-alpine
         working_dir: /var/www/
         entrypoint: ['npm']
@@ -70,7 +70,7 @@ services:
 
     # Composer Service
     composer:
-        container_name: ${PROJECT_NAME}-composer
+        container_name: ${PROJECT_NAME}_composer
         image: composer:2.3
         working_dir: /var/www/
         volumes:
@@ -80,7 +80,7 @@ services:
 
     # Artisan Service
     artisan:
-        container_name: ${PROJECT_NAME}-artisan
+        container_name: ${PROJECT_NAME}_artisan
         image: ${PROJECT_NAME}-app
         restart: unless-stopped
         working_dir: /var/www/
