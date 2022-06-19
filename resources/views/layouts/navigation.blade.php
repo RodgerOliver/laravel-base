@@ -24,7 +24,7 @@
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg scale-110 flex items-center mr-3">
-                                <img class="w-full h-full object-cover" src="{{ asset('storage/profile_pictures/' . Auth::user()->profile_picture) }}" />
+                                <img class="w-full h-full object-cover" src="{{ asset('uploads/profile_pictures/' . Auth::user()->profile_picture) }}" />
                             </div>
                             <div>{{ Auth::user()->name }}</div>
 

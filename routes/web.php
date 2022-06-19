@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MiscController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::group([
     'middleware' => 'auth',
 ], function() {
     Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::get('uploads/profile_pictures/{file_name}', [MiscController::class, 'licenseFileShow']);
 });
 
 
