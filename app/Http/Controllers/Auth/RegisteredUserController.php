@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -37,6 +38,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'profile_picture' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:5048'],
         ]);
 
         $user = User::create([
@@ -44,6 +46,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        /* Upload and record profile picture */
+        if($request->hasFile('profile_picture')) {
+            $profile_picture_name = time() . '-' . Str::slug($request->name, '_') . '.' . $request->profile_picture->extension();
+            $request->profile_picture->storeAs('profile_pictures', $profile_picture_name);
+            $user->update(['profile_picture' => $profile_picture_name]);
+        }
 
         event(new Registered($user));
 
