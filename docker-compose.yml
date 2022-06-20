@@ -11,7 +11,7 @@ services:
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
-        image: ${PROJECT_NAME}-php
+        image: ${PROJECT_NAME}_php
         restart: always
         working_dir: /var/www/
         volumes:
@@ -81,7 +81,7 @@ services:
     # Artisan Service
     artisan:
         container_name: ${PROJECT_NAME}_artisan
-        image: ${PROJECT_NAME}-php
+        image: ${PROJECT_NAME}_php
         working_dir: /var/www/
         entrypoint: ['php', 'artisan']
         volumes:
