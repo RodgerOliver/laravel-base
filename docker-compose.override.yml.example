@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+
+    # Composer Service
+    composer:
+        # fix permissions
+        # echo "$(id -u):$(id -g)"
+        user: 1000:1000
