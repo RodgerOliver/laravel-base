@@ -18,3 +18,11 @@ docker-compose run --rm composer install
 docker-compose run --rm npm install
 docker-compose run --rm npm run dev
 ```
+
+## Useful Commands
+
+If any artisan command needs to use composer:
+
+```
+docker-compose run --rm --entrypoint php composer artisan breeze:install vue
+```
