@@ -17,7 +17,6 @@ class ConfirmablePasswordController extends Controller
      */
     public function show()
     {
-        $this->authorize('page create');
         return view('auth.confirm-password');
     }
 

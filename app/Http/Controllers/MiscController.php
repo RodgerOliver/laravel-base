@@ -20,7 +20,7 @@ class MiscController extends Controller
     {
         /* Check if the file has extension */
         if (strpos($filename, '.') !== false) {
-            if (Auth::user()->profile_picture == $filename || Auth::user()->hasRole('master')) {
+            if (Auth::user()->profile_picture == $filename) {
                 return $this->returnFile($filename);
             } else {
                 abort(403, 'Access denied');

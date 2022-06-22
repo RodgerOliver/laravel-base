@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MiscController;
-use Illuminate\Support\Facades\Gate;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,16 +23,6 @@ Route::group([
 ], function() {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::get('uploads/profile_pictures/{file_name}', [MiscController::class, 'licenseFileShow']);
-
-    /* Permission test */
-    Route::get('create_page', function() {
-        abort_if(Gate::denies('page create'), 403);
-        return 'Only who can create pages';
-    });
-    Route::get('only_users', function() {
-        return 'Only users can see this';
-    })->middleware('role:user');
-
 });
 
 
