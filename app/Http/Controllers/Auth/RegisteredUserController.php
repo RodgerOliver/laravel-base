@@ -47,6 +47,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        /* Assign default role */
+        $user->assignRole('admin');
+
         /* Upload and record profile picture */
         if($request->hasFile('profile_picture')) {
             $profile_picture_name = time() . '-' . Str::slug($request->name, '_') . '.' . $request->profile_picture->extension();
