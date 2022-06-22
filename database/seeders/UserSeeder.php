@@ -15,22 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'id' => 1,
-            'name' => 'Master',
-            'email' => 'contact@master.com',
-        ]);
+        $arrayOfUsers = [
+            ['name' => 'Master', 'email' => 'contact@master.com'],
+            ['name' => 'Admin', 'email' => 'contact@admin.com'],
+            ['name' => 'User', 'email' => 'contact@user.com'],
+        ];
 
-        User::factory()->create([
-            'id' => 2,
-            'name' => 'Admin',
-            'email' => 'contact@admin.com',
-        ]);
+        $users = collect($arrayOfUsers)->map(function ($user) {
+            return ['name' => $user['name'], 'email' => $user['email']];
+        });
 
-        User::factory()->create([
-            'id' => 3,
-            'name' => 'User',
-            'email' => 'contact@user.com',
-        ]);
+        User::factory()->createMany($users->toArray());
     }
 }
