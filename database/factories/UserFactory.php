@@ -18,12 +18,14 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($this->faker));
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
+            'profile_picture' => $this->faker->image(storage_path('app/uploads/profile_pictures'), 50, 50, false),
         ];
     }
 
