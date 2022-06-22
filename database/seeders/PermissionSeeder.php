@@ -22,16 +22,16 @@ class PermissionSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         /* Create permissions */
-        Permission::create(['name' => 'page create']);
+        Permission::create(['name' => 'page create', 'readable_name' => 'Create page']);
 
         /* Gets all permissions via Gate::before rule; see AuthServiceProvider */
-        $role_master = Role::create(['name' => 'master']);
+        $role_master = Role::create(['name' => 'master', 'readable_name' => 'Master']);
 
         /* Create roles and assign existing permissions */
-        $role_admin = Role::create(['name' => 'admin']);
+        $role_admin = Role::create(['name' => 'admin', 'readable_name' => 'Administrator']);
         $role_admin->givePermissionTo('page create');
 
-        $role_user = Role::create(['name' => 'user']);
+        $role_user = Role::create(['name' => 'user', 'readable_name' => 'User']);
 
         /* Assign roles to seeded users */
         $user = User::find(1);

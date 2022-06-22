@@ -13,5 +13,6 @@ class Permission extends SpatiePermission
      */
     protected $fillable = [
         'name',
+        'readable_name',
     ];
 }
