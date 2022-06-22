@@ -20,5 +20,17 @@ class UserSeeder extends Seeder
             'name' => 'Master',
             'email' => 'contact@master.com',
         ]);
+
+        User::factory()->create([
+            'id' => 2,
+            'name' => 'Admin',
+            'email' => 'contact@admin.com',
+        ]);
+
+        User::factory()->create([
+            'id' => 3,
+            'name' => 'User',
+            'email' => 'contact@user.com',
+        ]);
     }
 }

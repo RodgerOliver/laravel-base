@@ -31,8 +31,14 @@ class PermissionSeeder extends Seeder
         $role_admin = Role::create(['name' => 'admin']);
         $role_admin->givePermissionTo('page create');
 
+        $role_user = Role::create(['name' => 'user']);
+
         /* Assign roles to seeded users */
         $user = User::find(1);
         $user->assignRole($role_master);
+        $user = User::find(2);
+        $user->assignRole($role_admin);
+        $user = User::find(3);
+        $user->assignRole($role_user);
     }
 }
