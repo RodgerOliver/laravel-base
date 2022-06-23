@@ -9,6 +9,8 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-configure opcache --enable-opcache \
+    && docker-php-ext-install opcache
 
 # Create group and user
 RUN addgroup -g $uid $user && \
