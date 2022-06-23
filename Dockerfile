@@ -4,6 +4,9 @@ FROM php:8.1-fpm-alpine
 ARG user=laravel
 ARG uid=1000
 
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
