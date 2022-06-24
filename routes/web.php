@@ -19,11 +19,10 @@ Route::get('/', function () {
 });
 
 Route::group([
-    'middleware' => 'auth',
+    'middleware' => ['auth', 'verified'],
 ], function() {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::get('uploads/profile_pictures/{file_name}', [MiscController::class, 'licenseFileShow']);
 });
-
 
 require __DIR__.'/auth.php';
