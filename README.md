@@ -32,8 +32,8 @@ cp .env.example .env
 >
 > Set `DB_PASSWORD` and `DB_PASSWORD_ROOT` fields
 >
-> Set `APP_URL NGINX_HTTP_PORT MYSQL_PORT` if needed
-
+> Set `APP_URL` and Docker Service ports if needed
+>
 > If running linux, configure `docker-compose.override.yml` file:
 
 ```sh
