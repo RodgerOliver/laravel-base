@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::group([
 
     Route::view('profile', 'profile')->name('profile');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::resource('tasks', TaskController::class);
 
     Route::get('uploads/profile_pictures/{file_name}', [MiscController::class, 'licenseFileShow']);
 
