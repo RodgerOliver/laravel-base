@@ -1,4 +1,4 @@
-# Laravel + Docker Project
+# Laravel Base Project
 
 [![version](https://img.shields.io/badge/PHP-8.1-787CB5)](https://php.net)
 [![version](https://img.shields.io/badge/Composer-2.3-89552C)](https://getcomposer.org)
@@ -10,9 +10,14 @@
 
 ## About
 
-Laravel + Docker is a base project that others can use to start their development
-with Laravel in containers. All softwares and dependencies are inside the containers
-so it can run anywhere.
+Laravel Base is a base project that others can use to start their development
+with Laravel in containers. All softwares and dependencies are inside the docker
+containers so it can run anywhere.
+
+There are some features developed that I learned and put in this project.
+Generally, examples of functionality, like CRUDs, storage management, to show how it is done and be used as a reference for other projects.
+
+It also has some packages pre-installed to easy the development.
 
 ## Important
 
