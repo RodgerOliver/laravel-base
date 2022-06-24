@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MiscController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,14 @@ Route::get('/', function () {
 Route::group([
     'middleware' => ['auth', 'verified'],
 ], function() {
+
     Route::view('dashboard', 'dashboard')->name('dashboard');
+
+    Route::view('profile', 'profile')->name('profile');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+
     Route::get('uploads/profile_pictures/{file_name}', [MiscController::class, 'licenseFileShow']);
+
 });
 
 require __DIR__.'/auth.php';
