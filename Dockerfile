@@ -18,6 +18,21 @@ RUN pecl install redis \
 
 RUN docker-php-ext-install pcntl posix
 
+RUN apk add --update bzip2-dev libzip-dev
+RUN docker-php-ext-install bz2 zip
+
+RUN apk add --update oniguruma-dev
+RUN docker-php-ext-install mbstring
+
+RUN apk add --update exiftool
+RUN docker-php-ext-configure exif
+RUN docker-php-ext-install exif
+RUN docker-php-ext-enable exif
+
+RUN apk add --update imagemagick-dev
+RUN pecl install imagick \
+    && docker-php-ext-enable imagick
+
 # Install composer
 COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
 
