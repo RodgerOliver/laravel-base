@@ -23,6 +23,13 @@ class ProfilePicturePrune extends Command
     protected $description = 'Clear all unused profile pictures';
 
     /**
+     * Count of deleted files.
+     *
+     * @var integer
+     */
+    protected $count = 0;
+
+    /**
      * Execute the console command.
      *
      * @return int
@@ -37,29 +44,24 @@ class ProfilePicturePrune extends Command
         info('===== START PRUNE PROFILE PICTURES =====');
         $storage_path = Storage::path('profile_pictures/');
         $files = Storage::files('profile_pictures/');
-        $progress_bar = $this->output->createProgressBar(count($files) - 1); // remove .gitignore from the counter
-        $count = 0;
 
-        foreach ($files as $file) {
+        $files = array_filter($files, function($file) {
+            return basename($file) !== '.gitignore'; // delete file from the list
+        });
+
+        $this->withProgressBar($files, function($file) use($storage_path) {
             $filename = basename($file);
-
-            if($filename === '.gitignore') {
-                continue;
-            }
 
             if(User::where('profile_picture', $filename)->count() === 0) {
                 Storage::delete($file);
                 info('Deleted file ' . $storage_path . $file);
-                $count++;
+                $this->count++;
             }
-            $progress_bar->advance();
-        }
+        });
+        $this->info(''); // add new line after the progress bar
 
-        $progress_bar->finish();
-        $this->info('');
-
-        if($count > 0) {
-            $message = $count . ' profile pictures were pruned successfully.';
+        if($this->count > 0) {
+            $message = $this->count . ' profile pictures were pruned successfully.';
         } else {
             $message = 'No profile pictures pruned.';
         }
