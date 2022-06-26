@@ -34,17 +34,40 @@ class ProfilePicturePrune extends Command
             return 1;
         }
 
+        info('===== START PRUNE PROFILE PICTURES =====');
+        $storage_path = Storage::path('profile_pictures/');
         $files = Storage::files('profile_pictures/');
+        $progress_bar = $this->output->createProgressBar(count($files) - 1); // remove .gitignore from the counter
+        $count = 0;
 
         foreach ($files as $file) {
             $filename = basename($file);
+
+            if($filename === '.gitignore') {
+                continue;
+            }
+
             if(User::where('profile_picture', $filename)->count() === 0) {
                 Storage::delete($file);
-                $this->info('Deleted file ' . $filename);
+                info('Deleted file ' . $storage_path . $file);
+                $count++;
             }
+            $progress_bar->advance();
         }
 
-        $this->info('All profile pictures pruned successfully.');
+        $progress_bar->finish();
+        $this->info('');
+
+        if($count > 0) {
+            $message = $count . ' profile pictures were pruned successfully.';
+        } else {
+            $message = 'No profile pictures pruned.';
+        }
+
+        $this->info($message);
+        info($message);
+        info('===== END PRUNE PROFILE PICTURES =====');
+
         return 0;
     }
 }
