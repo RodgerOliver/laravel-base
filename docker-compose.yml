@@ -82,8 +82,9 @@ services:
     # Composer Service
     composer:
         container_name: ${PROJECT_NAME}_composer
-        image: composer:2.3
+        image: ${PROJECT_NAME}_php
         working_dir: /var/www/
+        entrypoint: ['composer']
         volumes:
             - ./:/var/www
         networks:

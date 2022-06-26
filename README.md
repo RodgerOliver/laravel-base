@@ -38,12 +38,6 @@ cp .env.example .env
 > Set `DB_PASSWORD` and `DB_PASSWORD_ROOT` fields
 >
 > Set `APP_URL` and Docker Service ports if needed
->
-> If running linux, configure `docker-compose.override.yml` file:
-
-```sh
-cp docker-compose.override.yml.example docker-compose.override.yml
-```
 
 2. Start containers:
 
@@ -88,7 +82,6 @@ docker-compose run --rm artisan migrate --seed
   - `.env.example > .env`
     - Follow step 1 from [Installation](#installation)
   - `.npmrc`
-  - `docker-compose.override.yml.example > docker-compose.override.yml` if running on linux
   - `docker-compose.yml`
   - `Dockerfile`
 - Between [Installation](#installation) step 2 and 3 run the commands bellow
@@ -118,12 +111,6 @@ Stop and remove all containers:
 
 ```sh
 docker-compose down
-```
-
-If any artisan command needs to use composer:
-
-```sh
-docker-compose run --rm --entrypoint php composer artisan breeze:install vue
 ```
 
 ## Developer

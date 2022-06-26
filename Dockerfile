@@ -12,6 +12,9 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install opcache
 
+# Install composer
+COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
+
 # Create group and user
 RUN addgroup -g $uid $user && \
     adduser -u $uid -G $user -h /home/$user -D $user
