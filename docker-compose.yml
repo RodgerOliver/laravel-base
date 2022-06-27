@@ -122,6 +122,20 @@ services:
         networks:
             - app_network
 
+    # Queue Service
+    queue:
+        container_name: ${PROJECT_NAME}_queue
+        image: ${PROJECT_NAME}_php
+        restart: unless-stopped
+        working_dir: /var/www/
+        entrypoint: ['php', 'artisan', 'queue:work']
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - mysql
+        networks:
+            - app_network
+
 networks:
     app_network:
         driver: bridge
