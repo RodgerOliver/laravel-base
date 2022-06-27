@@ -27,6 +27,6 @@ class TaskCreatedListener
      */
     public function handle(TaskCreated $event)
     {
-        dispatch(new TaskCreatedJob($event))->delay(now()->addMinutes(1));
+        dispatch(new TaskCreatedJob($event));
     }
 }
