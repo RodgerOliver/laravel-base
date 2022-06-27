@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Str;
-use App\Notifications\WelcomeEmailNotification;
 
 class RegisteredUserController extends Controller
 {
@@ -58,7 +57,6 @@ class RegisteredUserController extends Controller
             $user->update(['profile_picture' => $profile_picture_name]);
         }
 
-        $user->notify(new WelcomeEmailNotification());
         event(new Registered($user));
 
         Auth::login($user);
