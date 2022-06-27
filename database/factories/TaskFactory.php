@@ -18,6 +18,8 @@ class TaskFactory extends Factory
     {
         return [
             'name' => $this->faker->text(20),
+            'created_by' => 1,
+            'updated_by' => 1,
         ];
     }
 }
