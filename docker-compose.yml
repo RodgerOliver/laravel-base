@@ -19,7 +19,7 @@ services:
             - ./:/var/www
             - ./.docker/php/local.ini:/etc/php.d/local.ini
         networks:
-            - app_network
+            - app-network
 
     # Nginx Service
     nginx:
@@ -35,7 +35,7 @@ services:
             - php
             - mysql
         networks:
-            - app_network
+            - app-network
 
     # Mysl Service
     mysql:
@@ -48,11 +48,11 @@ services:
             MYSQL_PASSWORD: ${DB_PASSWORD}
             MYSQL_USER: ${DB_USERNAME}
         volumes:
-            - mysql_dbdata:/var/lib/mysql
+            - mysql-dbdata:/var/lib/mysql
         ports:
             - ${MYSQL_PORT}:3306
         networks:
-            - app_network
+            - app-network
 
     # Mailhog Service
     mailhog:
@@ -63,7 +63,7 @@ services:
             - ${MAILHOG_PORT}:1025
             - ${MAILHOG_PORT_WEB}:8025
         networks:
-            - app_network
+            - app-network
 
     # ===== On-demand Services =====
     # Node Service
@@ -79,7 +79,7 @@ services:
             - ./:/var/www
             - ./.npmrc:/var/www/.npmrc
         networks:
-            - app_network
+            - app-network
 
     # Composer Service
     composer:
@@ -90,7 +90,7 @@ services:
         volumes:
             - ./:/var/www
         networks:
-            - app_network
+            - app-network
 
     # Artisan Service
     artisan:
@@ -103,7 +103,7 @@ services:
         depends_on:
             - mysql
         networks:
-            - app_network
+            - app-network
 
     # ===== Worker Services =====
     # Npm Watch Service
@@ -120,7 +120,7 @@ services:
             - ./:/var/www
             - ./.npmrc:/var/www/.npmrc
         networks:
-            - app_network
+            - app-network
 
     # Queue Service
     queue:
@@ -134,7 +134,7 @@ services:
         depends_on:
             - mysql
         networks:
-            - app_network
+            - app-network
 
     # Schedule Service
     schedule:
@@ -148,13 +148,12 @@ services:
         depends_on:
             - mysql
         networks:
-            - app_network
+            - app-network
 
 networks:
-    app_network:
+    app-network:
         driver: bridge
 
 volumes:
-    mysql_dbdata:
+    mysql-dbdata:
         driver: local
-
