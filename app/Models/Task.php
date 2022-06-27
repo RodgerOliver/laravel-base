@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Events\TaskCreated;
 
 class Task extends Model
 {
@@ -11,5 +12,9 @@ class Task extends Model
 
     protected $fillable = [
         'name'
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => TaskCreated::class,
     ];
 }

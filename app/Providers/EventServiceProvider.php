@@ -7,6 +7,8 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Listeners\WelcomeEmailListener;
+use App\Events\TaskCreated;
+use App\Listeners\TaskCreatedListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
             WelcomeEmailListener::class,
+        ],
+        TaskCreated::class => [
+            TaskCreatedListener::class,
         ],
     ];
 
