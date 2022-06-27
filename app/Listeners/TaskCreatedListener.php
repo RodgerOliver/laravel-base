@@ -2,12 +2,10 @@
 
 namespace App\Listeners;
 
-use App\Models\User;
 use App\Events\TaskCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\TaskCreatedNotification;
+use App\Jobs\TaskCreatedJob;
 
 class TaskCreatedListener
 {
@@ -29,9 +27,6 @@ class TaskCreatedListener
      */
     public function handle(TaskCreated $event)
     {
-        $admins = User::whereHas('roles', function($query){
-            $query->where('name', 'master');
-        })->get();
-        Notification::send($admins, new TaskCreatedNotification($event->task));
+        dispatch(new TaskCreatedJob($event))->delay(now()->addMinutes(1));
     }
 }
