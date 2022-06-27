@@ -43,4 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getMasters()
+    {
+        return User::whereHas('roles', function($query){
+            $query->where('name', 'master');
+        })->get();
+    }
 }

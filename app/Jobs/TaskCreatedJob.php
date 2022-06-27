@@ -36,9 +36,6 @@ class TaskCreatedJob implements ShouldQueue
      */
     public function handle()
     {
-        $admins = User::whereHas('roles', function($query){
-            $query->where('name', 'master');
-        })->get();
-        Notification::send($admins, new TaskCreatedNotification($this->event->task));
+        Notification::send(User::getMasters(), new TaskCreatedNotification($this->event->task));
     }
 }
