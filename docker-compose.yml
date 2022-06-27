@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
 
+    # ===== Primary Services =====
     # PHP Service
     php:
         container_name: ${PROJECT_NAME}_php
@@ -64,6 +65,7 @@ services:
         networks:
             - app_network
 
+    # ===== On-demand Services =====
     # Node Service
     npm:
         container_name: ${PROJECT_NAME}_npm
@@ -103,6 +105,7 @@ services:
         networks:
             - app_network
 
+    # ===== Worker Services =====
     # Npm Watch Service
     npm_watch:
         container_name: ${PROJECT_NAME}_npm-watch
