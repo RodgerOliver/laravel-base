@@ -65,6 +65,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+        $this->authorize('update', $task);
         return view('tasks.create', compact('task'));
     }
 
@@ -77,6 +78,7 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
+        $this->authorize('update', $task);
         $task->update($request->validated());
         return redirect()->route('tasks.index')->with('message', 'Task saved successfully');
     }
@@ -89,6 +91,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        $this->authorize('delete', $task);
         $task->delete();
         return redirect()->route('tasks.index')->with('message', 'Task deleted successfully');
     }
