@@ -38,4 +38,14 @@ class TaskCreatedJob implements ShouldQueue
     {
         Notification::send(User::getMasters(), new TaskCreatedNotification($this->event->task));
     }
+
+    /**
+     * Execute if job fails.
+     *
+     * @return void
+     */
+    public function failed()
+    {
+        info('TaskCreatedJob failed.');
+    }
 }
