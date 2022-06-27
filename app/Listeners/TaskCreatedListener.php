@@ -27,6 +27,6 @@ class TaskCreatedListener
      */
     public function handle(TaskCreated $event)
     {
-        dispatch(new TaskCreatedJob($event));
+        TaskCreatedJob::dispatch($event);
     }
 }
