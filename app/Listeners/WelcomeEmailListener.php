@@ -3,12 +3,16 @@
 namespace App\Listeners;
 
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Notifications\WelcomeEmailNotification;
 
-class WelcomeEmailListener
+class WelcomeEmailListener implements ShouldQueue
 {
+
+    use Queueable;
+
     /**
      * Create the event listener.
      *
