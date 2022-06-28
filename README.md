@@ -26,6 +26,28 @@ It also has some packages pre-installed to easy the development.
 inside the containers with the command `docker-compose run --rm [service]`
 as listed below.**
 
+## Usage
+
+Interacting with Redis container:
+
+```sh
+docker-compose exec redis redis-cli
+> keys *
+> mget [key]
+```
+
+Interacting with Php container:
+
+```sh
+docker-compose exec php sh
+```
+
+Interacting with MySQL container:
+
+```sh
+docker-compose exec mysql mysql -u laravel -p
+```
+
 ## Installation
 
 1. Configure `.env` file:
