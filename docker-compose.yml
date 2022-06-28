@@ -49,7 +49,7 @@ services:
             MYSQL_PASSWORD: ${DB_PASSWORD}
             MYSQL_USER: ${DB_USERNAME}
         volumes:
-            - mysql-dbdata:/var/lib/mysql
+            - mysql-data:/var/lib/mysql
         ports:
             - ${MYSQL_PORT}:3306
         networks:
@@ -166,7 +166,7 @@ networks:
         driver: bridge
 
 volumes:
-    mysql-dbdata:
+    mysql-data:
         driver: local
     redis-data:
         driver: local
