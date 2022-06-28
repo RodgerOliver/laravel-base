@@ -16,6 +16,8 @@ RUN apk add --update $PHPIZE_DEPS
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
+RUN docker-php-ext-install pcntl posix
+
 # Install composer
 COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
 
