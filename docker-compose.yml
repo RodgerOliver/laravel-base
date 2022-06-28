@@ -156,8 +156,6 @@ services:
         entrypoint: ['php', 'artisan', 'schedule:work']
         volumes:
             - ./:/var/www
-        depends_on:
-            - mysql
         networks:
             - app-network
 
