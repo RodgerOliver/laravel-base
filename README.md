@@ -93,6 +93,12 @@ docker-compose run --rm artisan key:generate
 docker-compose run --rm artisan migrate --seed
 ```
 
+8. Install Horizon (Redis Queues Dashboard)
+
+```sh
+docker-compose run --rm artisan horizon:install
+```
+
 ## Setup New Project
 
 - Copy the files to your project folder
