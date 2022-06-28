@@ -5,6 +5,7 @@
 [![version](https://img.shields.io/badge/Laravel-9.12-FF291A)](https://laravel.com)
 [![version](https://img.shields.io/badge/Nginx-1.21.6-009639)](https://nginx.com)
 [![version](https://img.shields.io/badge/MySQL-8.0-1C4863)](https://mysql.com)
+[![version](https://img.shields.io/badge/Redis-7.0.2-D82C20)](https://redis.io)
 [![version](https://img.shields.io/badge/npm-8.5.5-CC3534)](https://npmjs.com)
 [![version](https://img.shields.io/badge/Node.js-16-026E00)](https://nodejs.com)
 
@@ -36,7 +37,7 @@ cp .env.example .env
 2. Start containers:
 
 ```sh
-docker-compose up -d --build php mysql nginx
+docker-compose up -d --build php mysql redis nginx
 ```
 
 3. Install composer packages:
