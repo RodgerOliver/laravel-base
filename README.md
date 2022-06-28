@@ -57,10 +57,10 @@ docker-compose exec mysql mysql -u laravel -p
 cp .env.example .env
 ```
 
-2. Start containers:
+2. Build Dockerfile and start containers:
 
 ```sh
-docker-compose up -d --build php mysql redis nginx
+docker-compose up -d --build php mysql redis nginx mailhog horizon
 ```
 
 3. Install composer packages:
