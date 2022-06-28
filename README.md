@@ -33,12 +33,6 @@ as listed below.**
 cp .env.example .env
 ```
 
-> Set 3 first name fields
->
-> Set `DB_PASSWORD` and `DB_PASSWORD_ROOT` fields
->
-> Set `APP_URL` and Docker Service ports if needed
-
 2. Start containers:
 
 ```sh
