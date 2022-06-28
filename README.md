@@ -11,8 +11,8 @@
 ## About
 
 Laravel Base is a base project that others can use to start their development
-with Laravel in containers. All softwares and dependencies are inside the docker
-containers so it can run anywhere.
+with Laravel in containers. All software and dependencies are inside the docker
+containers, so it can run anywhere.
 
 There are some features developed that I learned and put in this project.
 Generally, examples of functionality, like CRUDs, storage management, to show how it is done and be used as a reference for other projects.
