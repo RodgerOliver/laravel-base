@@ -133,13 +133,13 @@ services:
         networks:
             - app-network
 
-    # Queue Service
-    queue:
-        container_name: ${PROJECT_NAME}_queue
+    # Horizon Service
+    horizon:
+        container_name: ${PROJECT_NAME}_horizon
         image: ${PROJECT_NAME}_php
         restart: unless-stopped
         working_dir: /var/www/
-        entrypoint: ['php', 'artisan', 'queue:work']
+        entrypoint: ['php', 'artisan', 'horizon']
         volumes:
             - ./:/var/www
         depends_on:
