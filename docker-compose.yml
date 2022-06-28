@@ -159,6 +159,19 @@ services:
         networks:
             - app-network
 
+    # ===== Web Interface Services =====
+    # Redis Commander Service
+    redis-commander:
+        container_name: ${PROJECT_NAME}_redis-commander
+        image: rediscommander/redis-commander:latest
+        restart: unless-stopped
+        ports:
+            - ${REDIS_COMMANDER_PORT}:8081
+        environment:
+            REDIS_HOSTS: default:${REDIS_HOST}:${REDIS_PORT}:0,cache:${REDIS_HOST}:${REDIS_PORT}:1,session:${REDIS_HOST}:${REDIS_PORT}:2,queue:${REDIS_HOST}:${REDIS_PORT}:3
+        networks:
+            - app-network
+
 networks:
     app-network:
         driver: bridge
