@@ -118,7 +118,7 @@ services:
 
     # ===== Worker Services =====
     # Npm Watch Service
-    npm_watch:
+    npm-watch:
         container_name: ${PROJECT_NAME}_npm-watch
         image: node:16-alpine
         restart: unless-stopped

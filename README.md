@@ -122,7 +122,7 @@ rm laravel/{.env,.env.example} ; mv laravel/* laravel/.* -t . ; rm -rf laravel/
 Mix resource files in real time:
 
 ```sh
-docker-compose up -d npm_watch
+docker-compose up -d npm-watch
 ```
 
 Run migrations from a specific version:
