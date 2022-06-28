@@ -32,6 +32,7 @@ Interacting with Redis container:
 
 ```sh
 docker-compose exec redis redis-cli
+> selec [DB]
 > keys *
 > mget [key]
 ```
