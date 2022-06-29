@@ -162,6 +162,18 @@ services:
             - app-network
 
     # ===== Web Interface Services =====
+    # RedisInsight Service
+    redisinsight:
+        container_name: ${PROJECT_NAME}_redisinsight
+        image: redislabs/redisinsight:latest
+        restart: unless-stopped
+        ports:
+            - ${REDIS_INSIGHT_PORT}:8001
+        volumes:
+            - redisinsight-data:/db
+        networks:
+            - app-network
+
     # Redis Commander Service
     redis-commander:
         container_name: ${PROJECT_NAME}_redis-commander
@@ -187,4 +199,6 @@ volumes:
     mysql-data:
         driver: local
     redis-data:
+        driver: local
+    redisinsight-data:
         driver: local
