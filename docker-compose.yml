@@ -115,6 +115,7 @@ services:
             - ./:/var/www
         depends_on:
             - mysql
+            - redis
         networks:
             - app-network
 
@@ -171,6 +172,8 @@ services:
             - ${REDIS_INSIGHT_PORT}:8001
         volumes:
             - redisinsight-data:/db
+        depends_on:
+            - redis
         networks:
             - app-network
 
@@ -188,6 +191,8 @@ services:
               cache:${REDIS_HOST}:${REDIS_PORT}:1:${REDIS_PASSWORD},
               session:${REDIS_HOST}:${REDIS_PORT}:2:${REDIS_PASSWORD},
               queue:${REDIS_HOST}:${REDIS_PORT}:3:${REDIS_PASSWORD}
+        depends_on:
+            - redis
         networks:
             - app-network
 
