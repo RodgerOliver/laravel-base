@@ -60,8 +60,10 @@ services:
         container_name: ${PROJECT_NAME}_redis
         image: redis:7.0.2-alpine
         restart: always
+        command: redis-server /usr/local/etc/redis/redis.conf --requirepass ${REDIS_PASSWORD}
         volumes:
             - redis-data:/data
+            - ./.docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
         networks:
             - app-network
 
