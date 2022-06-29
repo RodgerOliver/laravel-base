@@ -136,7 +136,7 @@ services:
         networks:
             - app-network
 
-    # Horizon Service
+    # Horizon Redis Queues Service
     horizon:
         container_name: ${PROJECT_NAME}_horizon
         image: ${PROJECT_NAME}_php
