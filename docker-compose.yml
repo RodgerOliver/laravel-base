@@ -196,6 +196,54 @@ services:
         networks:
             - app-network
 
+    # CloudBeaver Service
+    cloudbeaver:
+        container_name: ${PROJECT_NAME}_cloudbeaver
+        image: dbeaver/cloudbeaver:latest
+        restart: unless-stopped
+        ports:
+            - ${CLOUDBEAVER_PORT}:8978
+        volumes:
+            - cloudbeaver-data:/opt/cloudbeaver/workspace
+        depends_on:
+            - mysql
+        networks:
+            - app-network
+
+    # DBGate Service
+    dbgate:
+        container_name: ${PROJECT_NAME}_dbgate
+        image: dbgate/dbgate:latest
+        restart: unless-stopped
+        ports:
+            - ${DBGATE_PORT}:3000
+        volumes:
+            - dbgate-data:/root/.dbgate
+        environment:
+            LOGINS: ${DBGATE_USERNAME}
+            LOGIN_PASSWORD_admin: ${DBGATE_PASSWORD}
+
+            CONNECTIONS: con1,con2
+
+            LABEL_con1: MySQL
+            SERVER_con1: ${DB_HOST}
+            USER_con1: ${DB_USERNAME}
+            PASSWORD_con1: ${DB_PASSWORD}
+            PORT_con1: ${DB_PORT}
+            ENGINE_con1: mysql@dbgate-plugin-mysql
+
+            LABEL_con2: Redis
+            SERVER_con2: ${REDIS_HOST}
+            USER_con2: ${REDIS_USERNAME}
+            PASSWORD_con2: ${REDIS_PASSWORD}
+            PORT_con2: ${REDIS_PORT}
+            ENGINE_con2: redis@dbgate-plugin-redis
+        depends_on:
+            - mysql
+            - redis
+        networks:
+            - app-network
+
 networks:
     app-network:
         driver: bridge
@@ -206,4 +254,8 @@ volumes:
     redis-data:
         driver: local
     redisinsight-data:
+        driver: local
+    cloudbeaver-data:
+        driver: local
+    dbgate-data:
         driver: local
