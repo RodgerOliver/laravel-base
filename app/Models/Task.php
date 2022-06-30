@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\TaskCreated;
 use App\Traits\FilterByUser;
 use App\Traits\LogUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,5 +14,9 @@ class Task extends Model
 
     protected $fillable = [
         'name'
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => TaskCreated::class,
     ];
 }
