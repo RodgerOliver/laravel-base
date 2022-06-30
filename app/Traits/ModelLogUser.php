@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Auth;
 
 trait ModelLogUser
 {
-    protected static function boot()
+    protected static function bootModelLogUser()
     {
-        parent::boot();
         if(Auth::check()) {
             self::creating(function($model) {
                 $model->created_by = Auth::id();
