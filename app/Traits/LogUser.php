@@ -4,9 +4,9 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Auth;
 
-trait ModelLogUser
+trait LogUser
 {
-    protected static function bootModelLogUser()
+    protected static function bootLogUser()
     {
         if(Auth::check()) {
             self::creating(function($model) {
