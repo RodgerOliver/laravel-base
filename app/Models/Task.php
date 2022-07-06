@@ -20,4 +20,16 @@ class Task extends Model
     protected $dispatchesEvents = [
         'created' => TaskCreated::class,
     ];
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+        ];
+    }
 }

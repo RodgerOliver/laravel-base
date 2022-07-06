@@ -15,8 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate();
-
+        $tasks = Task::search(request('search'))->paginate();
         return view('tasks.index', compact('tasks'));
     }
 
