@@ -63,18 +63,18 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="{{ route('tasks.show', $task) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">{{ __('View') }}</a>
 
-                                                @if(auth()->user()->id === $task->created_by)
+                                                @can('update', $task)
                                                 <a href="{{ route('tasks.edit', $task) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">{{ __('Edit') }}</a>
-                                                @endif
+                                                @endcan
 
-                                                @if(auth()->user()->id === $task->created_by)
+                                                @can('delete', $task)
                                                 <form method="POST" action="{{ route('tasks.destroy', $task) }}" class="inline">
                                                     @method('DELETE')
                                                     @csrf
                                                     <a href="javascript:void(0)" onclick="event.preventDefault(); this.closest('form').submit();"
                                                         class="text-indigo-600 hover:text-indigo-900">{{ __('Delete') }}</a>
                                                 </form>
-                                                @endif
+                                                @endcan
 
                                             </td>
                                         </tr>
