@@ -20,16 +20,12 @@ class TaskController extends Controller
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->index((new Task)->searchableAs())->updateFilterableAttributes(['created_by']);
 
-        $tasks = Task::search(request('search'))
-            ->query(function ($builder) {
-                $builder->withoutGlobalScopes();
-            });
-
-        if(!Auth::user()->hasRole('master')) {
-            $tasks->where('created_by', Auth::id());
-        }
-
-        $tasks = $tasks->paginate();
+        $tasks = Task::search(request('search'), function ($meilisearch, $query, $options) {
+            if(!Auth::user()->hasRole('master')) {
+                $options['filter'][] = 'created_by = ' . Auth::id();
+            }
+            return $meilisearch->search($query, $options);
+        })->paginate();
 
         return view('tasks.index', compact('tasks'));
     }
