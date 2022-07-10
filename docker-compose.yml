@@ -35,6 +35,7 @@ services:
             - php
             - mysql
             - redis
+            - meilisearch
         networks:
             - app-network
 

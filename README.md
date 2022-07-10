@@ -60,7 +60,7 @@ cp .env.example .env
 2. Build Dockerfile and start containers:
 
 ```sh
-docker-compose up -d --build php mysql redis nginx mailhog horizon
+docker-compose up -d --build php mysql redis nginx mailhog horizon meilisearch
 ```
 
 3. Install composer packages:
