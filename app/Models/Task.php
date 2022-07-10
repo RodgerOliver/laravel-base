@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\TaskCreated;
 use App\Traits\FilterByUser;
 use App\Traits\LogUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
@@ -21,15 +22,16 @@ class Task extends Model
         'created' => TaskCreated::class,
     ];
 
-    /**
-     * Get the indexable data array for the model.
-     *
-     * @return array
-     */
     public function toSearchableArray()
     {
         return [
             'name' => $this->name,
+            'created_by' => $this->created_by,
         ];
+    }
+
+    public static function makeAllSearchableUsing(Builder $builder)
+    {
+        return $builder->withoutGlobalScopes();
     }
 }

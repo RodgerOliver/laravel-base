@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
+use MeiliSearch\Client;
 
 class TaskController extends Controller
 {
@@ -15,7 +17,20 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::search(request('search'))->paginate();
+        $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
+        $client->index((new Task)->searchableAs())->updateFilterableAttributes(['created_by']);
+
+        $tasks = Task::search(request('search'))
+            ->query(function ($builder) {
+                $builder->withoutGlobalScopes();
+            });
+
+        if(!Auth::user()->hasRole('master')) {
+            $tasks->where('created_by', Auth::id());
+        }
+
+        $tasks = $tasks->paginate();
+
         return view('tasks.index', compact('tasks'));
     }
 
