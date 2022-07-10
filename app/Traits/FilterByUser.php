@@ -11,7 +11,9 @@ trait FilterByUser
     {
         if (Auth::check()) {
             self::addGlobalScope(function (Builder $builder) {
-                $builder->where('created_by', Auth::id());
+                if(!Auth::user()->hasRole('master')) {
+                    $builder->where('created_by', Auth::id());
+                }
             });
         }
     }
