@@ -34,4 +34,12 @@ class Task extends Model
     {
         return $builder->withoutGlobalScopes();
     }
+
+    public static function getSearchFilterAttributes()
+    {
+        return [
+            'name',
+            'created_by',
+        ];
+    }
 }
