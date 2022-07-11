@@ -23,7 +23,7 @@ class ImportAll extends Command
      *
      * @var string
      */
-    protected $description = 'Import all models into the search index';
+    protected $description = 'Import all models and update their filterable attributes into the search engine';
 
     protected $excluded = [
         // User::class,
@@ -55,8 +55,10 @@ class ImportAll extends Command
                 $class = app($this->modelNamespacePrefix() . $class_name);
                 $index = $class->searchableAs();
                 $class_namespace = $this->modelNamespacePrefix() . $class_name;
-                $this->info('Importing data from ' . $class_namespace . ' to index ' . $index . '.');
+                $this->info('Importing data from ' . $class_namespace . ' to index ' . $index);
                 Artisan::call('scout:import', ['model' => $class_namespace]);
+                $this->info('Updating filterable attributes from ' . $class_namespace . ' to index ' . $index);
+                Artisan::call('meili:filterable', ['model' => $class_namespace]);
             });
 
         return 0;
