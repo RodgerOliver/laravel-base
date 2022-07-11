@@ -14,6 +14,8 @@ class Task extends Model
 {
     use HasFactory, LogUser, FilterByUser, Searchable;
 
+    protected $perPage = 10;
+
     protected $fillable = [
         'name'
     ];
