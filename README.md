@@ -165,6 +165,12 @@ docker-compose down
 
 - [Algolia and Laravel Scout](https://code.tutsplus.com/tutorials/how-to-setup-a-full-text-search-using-scout-in-laravel--cms-30702)
 
+## Elasticsearch
+
+- [Elasticsearch and Laravel Scout](https://github.com/matchish/laravel-scout-elasticsearch)
+- [With Third Party Package, Without Scout](https://developer.okta.com/blog/2022/02/09/a-developers-guide-to-elasticsearch-with-laravel)
+- [With Official Package, Without Scout](https://madewithlove.com/blog/software-engineering/how-to-integrate-elasticsearch-in-your-laravel-app-2022)
+
 ## Developer
 
 _Rodger Bittencourt_ `2022`
