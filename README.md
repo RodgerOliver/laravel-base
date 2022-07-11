@@ -151,6 +151,19 @@ Stop and remove all containers:
 docker-compose down
 ```
 
+## References
+
+### Meilisearch
+
+- [Meilisearch Docs](https://meilisearch.com)
+- [Meilisearch and Laravel Scout](https://laravel-news.com/getting-started-laravel-scout-meilisearch)
+- [Filtering with Meilisearch and Scout](https://serversideup.net/filtering-meilisearch-search-results-with-laravel-scout)
+- [Configure Filterable and Sortable](https://laracasts.com/discuss/channels/general-discussion/laravel-scout-meilisearch-add-filterableattributes-sortableattributes-upon-import)
+
+### Algolia
+
+- [Algolia and Laravel Scout](https://code.tutsplus.com/tutorials/how-to-setup-a-full-text-search-using-scout-in-laravel--cms-30702)
+
 ## Developer
 
 _Rodger Bittencourt_ `2022`
