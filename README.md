@@ -93,10 +93,24 @@ docker-compose run --rm artisan key:generate
 docker-compose run --rm artisan migrate --seed
 ```
 
-8. Install Horizon (Redis Queues Dashboard)
+8. Install Horizon (Redis Queues Dashboard):
 
 ```sh
 docker-compose run --rm artisan horizon:install
+```
+
+9. Index data and configure Meilisearch:
+
+```sh
+docker-compose run --rm artisan scout:index 'tasks' # optional
+docker-compose run --rm artisan scout:import 'App\Models\Task'
+docker-compose run --rm artisan scout:filters 'tasks'
+
+# get master (backend) and public (frontend) keys
+curl \
+  -X GET 'http://localhost:7700/keys' \
+  -H 'Authorization: Bearer masterKey'
+
 ```
 
 ## Setup New Project
