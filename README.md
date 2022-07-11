@@ -8,6 +8,7 @@
 [![version](https://img.shields.io/badge/Redis-7.0.2-D82C20)](https://redis.io)
 [![version](https://img.shields.io/badge/npm-8.5.5-CC3534)](https://npmjs.com)
 [![version](https://img.shields.io/badge/Node.js-16-026E00)](https://nodejs.com)
+[![version](https://img.shields.io/badge/Meilisearch-0.27.2-FF5CAA)](https://meilisearch.com)
 
 ## About
 
