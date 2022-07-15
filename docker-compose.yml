@@ -94,7 +94,7 @@ services:
             - app-network
 
     # ===== On-demand Services =====
-    # Node Service
+    # Npm Service
     npm:
         container_name: ${PROJECT_NAME}_npm
         image: node:16
