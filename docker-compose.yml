@@ -105,7 +105,6 @@ services:
             NPM_CONFIG_LOGLEVEL: warn
         volumes:
             - ./:/var/www
-            - ./.npmrc:/var/www/.npmrc
         networks:
             - app-network
 
@@ -147,7 +146,6 @@ services:
             NPM_CONFIG_LOGLEVEL: warn
         volumes:
             - ./:/var/www
-            - ./.npmrc:/var/www/.npmrc
         networks:
             - app-network
 
