@@ -15,6 +15,7 @@ services:
         image: ${PROJECT_NAME}_php
         restart: always
         working_dir: /var/www/
+        entrypoint: ['php']
         volumes:
             - ./:/var/www
             - ./.docker/php/local.ini:/etc/php.d/local.ini
