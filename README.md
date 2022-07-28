@@ -103,9 +103,7 @@ docker-compose run --rm artisan horizon:install
 9. Index data and configure Meilisearch:
 
 ```sh
-docker-compose run --rm artisan scout:index 'tasks' # optional
-docker-compose run --rm artisan scout:import 'App\Models\Task'
-docker-compose run --rm artisan scout:filters 'tasks'
+docker-compose run --rm artisan scout:import-all
 
 # get master (backend) and public (frontend) keys
 curl \
