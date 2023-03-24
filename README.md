@@ -150,6 +150,14 @@ Stop and remove all containers:
 docker-compose down
 ```
 
+Link storage folder of Laravel:
+
+```sh
+docker-compose run --rm artisan storage:link
+# or on linux
+ln -r -s storage/app/public/ public/storage
+```
+
 ## References
 
 ### Meilisearch
