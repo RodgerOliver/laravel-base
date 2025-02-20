@@ -1,9 +1,5 @@
 FROM php:8.1-fpm-alpine
 
-# Arguments defined in docker-compose.yml
-ARG user=laravel
-ARG uid=1000
-
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
@@ -21,10 +17,4 @@ RUN docker-php-ext-install pcntl posix
 # Install composer
 COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
 
-# Create group and user
-RUN addgroup -g $uid $user && \
-    adduser -u $uid -G $user -h /home/$user -D $user
-
-# Set working directory and user
-WORKDIR /var/www
-USER $user
+WORKDIR /app

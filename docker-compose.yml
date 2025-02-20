@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
 
     # ===== Primary Services =====
@@ -7,16 +5,13 @@ services:
     php:
         container_name: ${PROJECT_NAME}_php
         build:
-            args:
-                user: laravel
-                uid: 1000
             context: ./
             dockerfile: Dockerfile
         image: ${PROJECT_NAME}_php
         restart: always
-        working_dir: /var/www/
+        working_dir: /app/
         volumes:
-            - ./:/var/www
+            - ./:/app/
             - ./.docker/php/local.ini:/etc/php.d/local.ini
         networks:
             - app-network
@@ -98,13 +93,12 @@ services:
     npm:
         container_name: ${PROJECT_NAME}_npm
         image: node:16
-        working_dir: /var/www/
+        working_dir: /app/
         entrypoint: ['npm']
-        user: node
         environment:
             NPM_CONFIG_LOGLEVEL: warn
         volumes:
-            - ./:/var/www
+            - ./:/app/
         networks:
             - app-network
 
@@ -112,10 +106,10 @@ services:
     composer:
         container_name: ${PROJECT_NAME}_composer
         image: ${PROJECT_NAME}_php
-        working_dir: /var/www/
+        working_dir: /app/
         entrypoint: ['composer']
         volumes:
-            - ./:/var/www
+            - ./:/app/
         networks:
             - app-network
 
@@ -123,10 +117,10 @@ services:
     artisan:
         container_name: ${PROJECT_NAME}_artisan
         image: ${PROJECT_NAME}_php
-        working_dir: /var/www/
+        working_dir: /app/
         entrypoint: ['php', 'artisan']
         volumes:
-            - ./:/var/www
+            - ./:/app/
         depends_on:
             - mysql
             - redis
@@ -139,13 +133,12 @@ services:
         container_name: ${PROJECT_NAME}_npm-watch
         image: node:16
         restart: unless-stopped
-        working_dir: /var/www/
+        working_dir: /app/
         entrypoint: ['npm', 'run', 'watch']
-        user: node
         environment:
             NPM_CONFIG_LOGLEVEL: warn
         volumes:
-            - ./:/var/www
+            - ./:/app/
         networks:
             - app-network
 
@@ -154,10 +147,10 @@ services:
         container_name: ${PROJECT_NAME}_horizon
         image: ${PROJECT_NAME}_php
         restart: unless-stopped
-        working_dir: /var/www/
+        working_dir: /app/
         entrypoint: ['php', 'artisan', 'horizon']
         volumes:
-            - ./:/var/www
+            - ./:/app/
         depends_on:
             - redis
         networks:
@@ -168,10 +161,10 @@ services:
         container_name: ${PROJECT_NAME}_schedule
         image: ${PROJECT_NAME}_php
         restart: unless-stopped
-        working_dir: /var/www/
+        working_dir: /app/
         entrypoint: ['php', 'artisan', 'schedule:work']
         volumes:
-            - ./:/var/www
+            - ./:/app/
         networks:
             - app-network
 
